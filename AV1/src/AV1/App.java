@@ -7,6 +7,15 @@ public class App {
 	public static Pessoa[] lista = new Pessoa[MAX];
 
 	public static void main(String[] args) {
+		exercicio01();
+		exercicio04();
+		//exercicio03();
+		//exercicio02();
+	}
+	
+	
+	// Exercicio 01
+	public static void exercicio01(){
 		
 		lista[0] = new Pessoa("João", 10);
 		lista[1] = new Pessoa("Alice", 5);
@@ -14,54 +23,65 @@ public class App {
 		lista[3] = new Pessoa("Carlos", 12);
 		lista[4] = new Pessoa("Priscila", 31);
 		
-		imprimirEmOrdemIdade();
+		int menorIdade = lista[0].getIdade();
 		
-	}
-	
-	public static void listar() {
 		for (int i = 0; i < lista.length; i++) {
 			if(lista[i] != null) {
-				System.out.println(lista[i].nome);
+				
 			}
 		}
+		
 	}
-	
-	public static void removerPorIdade(int idade) {
+	// Exercicio 02
+	public static void exercicio02(){
+		
+		lista[0] = new Pessoa("João", 10);
+		lista[1] = new Pessoa("Alice", 5);
+		lista[2] = new Pessoa("Fernando", 27);
+		lista[3] = new Pessoa("Carlos", 12);
+		lista[4] = new Pessoa("Priscila", 31);
+		
 		for (int i = 0; i < lista.length; i++) {
-			if(lista[i].idade == idade) {
+			if(lista[i].getIdade() == 27) {
 				lista[i] = null;
 			}
 		}
-		
-		listar();
 	}
 	
-	public static void imprimirComIdadeMaior(int idade) {
-		for (int i = 0; i < lista.length; i++) {
-			if(lista[i].idade > idade) {
-				System.out.println(lista[i].id + " - " + lista[i].nome + " - " + lista[i].idade);
-			}
-		}
-	}
-	
-	public static void imprimirEmOrdemIdade() {
-		int idMenorIdade = encontrarIdMenorIdade();
+	// Exercicio 03
+	public static void exercicio03(){
 		
-		
-		
-		System.out.println(idMenorIdade);
-	}
-	public static int encontrarIdMenorIdade() {
-		int id = lista[0].id;
-		int idadeInicial = lista[0].idade;
+		lista[0] = new Pessoa("Paulo", 8);
+		lista[1] = new Pessoa("Silas", 19);
+		lista[2] = new Pessoa("Paulo", 18);
+		lista[3] = new Pessoa("Pedro", 25);
+		lista[4] = new Pessoa("Paulo", 50);
 		
 		for (int i = 0; i < lista.length; i++) {
-			if(lista[i].idade < idadeInicial) {
-				id = lista[i].id;
+			if(lista[i].getIdade() > 21) {
+				System.out.println(lista[i].getId() + " - " + lista[i].getNome() + " - " + lista[i].getIdade());
 			}
 		}
-		
-		return id;
+			
 	}
 	
+	// Exercicio 04
+		public static void exercicio04(){
+			
+			Pessoa.resetarContador();
+			
+			CachePessoa cache = new CachePessoa();
+			
+			lista[0] = new Pessoa("Paulo", 8);
+			lista[1] = new Pessoa("Silas", 19);
+			lista[2] = new Pessoa("Paulo", 18);
+			lista[3] = new Pessoa("Pedro", 25);
+			lista[4] = new Pessoa("Paulo", 50);
+			
+			cache.retornaPessoa(4); // Primeira vez que busca essa id, então retornara da lista
+			cache.retornaPessoa(1); // Primeira vez que busca essa id, então retornara da lista
+			cache.retornaPessoa(4); // Segunda vez que busca essa id, então retornara do cache
+			
+		}
+		
 }
